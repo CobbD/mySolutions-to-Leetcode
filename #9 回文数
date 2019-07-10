@@ -1,0 +1,52 @@
+//Mine
+class Solution {
+    public boolean isPalindrome(int x) {
+        int faker = x,count = 0;
+                    int c = -1;
+    	while(faker!=0) {
+    		count++;
+    		faker /=10;                          //三位数
+    	}
+    	int k = 1;
+    	int[] ten = new int[count];
+    	for (int i = 0; i < count; i++) {
+			ten[i] = k*10;
+			k *= 10;
+		}
+        int[] str = new int[count];
+    	if(x>=0) {
+    		for (int i = 0; i < count; i++) {
+				str[i] = x%10;
+                x = x/10;
+			}
+            for(int i = 0;i<count/2;i++){
+                if(str[i] == str[count-i-1]){
+                    }else{break;};
+                c = i;
+            }
+    	
+        
+        }else{return(false);}
+    	if (c!= count/2-1) {return(false);}
+    	else {return (true);}
+    }
+}
+
+//leetcode
+class Solution {
+    public boolean isPalindrome(int x) {
+        //边界判断
+        if (x < 0) return false;
+        int div = 1;
+        //
+        while (x / div >= 10) div *= 10;
+        while (x > 0) {
+            int left = x / div;
+            int right = x % 10;
+            if (left != right) return false;
+            x = (x % div) / 10;
+            div /= 100;
+        }
+        return true;
+    }
+}
